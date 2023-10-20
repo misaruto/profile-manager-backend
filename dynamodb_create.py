@@ -1,18 +1,12 @@
 
 import boto3
 
-dynamodb = boto3.resource(
-          'dynamodb' ,
-          endpoint_url="http://localhost:8000",
-          aws_access_key_id="fakeSecretAccessKey", aws_secret_access_key="fakeMyKeyId"
-    )
+dynamodb = boto3.resource('dynamodb',region='sa-east-1')
 
 def create_table(dynamodb=None):
     if not dynamodb:
         dynamodb = boto3.resource(
-          'dynamodb' ,
-          endpoint_url="http://localhost:8000",
-          aws_access_key_id="fakeSecretAccessKey", aws_secret_access_key="fakeMyKeyId"
+          'dynamodb' 
     )
 
     table = dynamodb.create_table(
@@ -61,11 +55,7 @@ def delete_dax_table(dyn_resource=None):
 
 
 if __name__ == '__main__':
-    delete_dax_table()
-    print("Table deleted!")
-
-if __name__ == '__main__':
-    delete_dax_table(dynamodb)
+    #delete_dax_table(dynamodb)
     users_table = create_table(dynamodb)
     print("Table status:", users_table.table_status)
 

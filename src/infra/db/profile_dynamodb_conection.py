@@ -12,12 +12,8 @@ class ProfileDb(ProfileDbInterface):
         config = Config(connect_timeout=1, read_timeout=1, retries={"max_attempts": 2})
         self._tabela = boto3.resource(
             "dynamodb", 
-            config=config,
-            endpoint_url=os.environ.get("AWS_DYNAMO_DB_ENDPOINT",None),
-            aws_access_key_id="fakeSecretAccessKey", aws_secret_access_key="fakeMyKeyId"
-        ).Table(
-            os.environ.get("PROFILE_TABLE", "profile")
-        )
+            config=config
+        ).Table("profile")
     
     def select(
         self,
