@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8080
 
-CMD gunicorn --workers $WORKERS \
-  --threads $THREADS \
+CMD gunicorn --workers 1 \
+  --threads 2 \
   --bind 0.0.0.0:$PORT_APP \
   app:app
